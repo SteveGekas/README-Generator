@@ -63,11 +63,49 @@ function renderLicenseLink(data) {
 }
 
 //function that returns the license section of README
-function renderLicenseSection(data) { }
+function renderLicenseSection(data) { 
+  return {renderLicenseBadge}, {renderLicenseLink};
+
+}
+
+function renderTOC(data) {
+  
+}
 
 //function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
+
+  ##Table of Contents
+
+
+  ## Description
+  ${data.description}
+
+  ## Installation
+  ${data.install}
+
+  ## Usage
+  ${data.usage}
+
+  ## Contributions
+  ${data.guidelines}
+
+  ## Testing
+  ${data.test}
+
+  ## License
+  ${renderLicenseBadge(data)}
+  ${renderLicenseSection(data)}
+
+  ## Github Name
+  Look for me on Github: ${data.github}
+
+  ## Email
+  For any inquiries, please email me at: ${data.email}
+
+  ##Links
+  ${data.links}
 
 `;
 }
