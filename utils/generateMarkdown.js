@@ -1,7 +1,34 @@
 //function that returns a license badge based on which license is passed in
 
 function renderLicenseBadge(data) {
-  
+  let badge;
+  switch (data.license) {
+    case 'MIT':
+      badge = '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]';
+      break;
+    case 'Mozilla':
+      badge = '[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)]';
+      break;
+    case 'IBM':
+      badge = '[![License: IPL 1.0](https://img.shields.io/badge/License-IPL%201.0-blue.svg)]';
+      break;
+    case 'Apache':
+      badge = '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)]';
+      break;
+    case 'BSD 3-Clause':
+      badge = '[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)]';
+      break;
+    case 'Eclipse':
+      badge = '[![License](https://img.shields.io/badge/License-EPL%201.0-red.svg)]';
+      break;
+    case 'Other':
+      badge = '[![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)]';
+      break;
+    case 'None':
+      badge = ' ';
+      break;
+  }
+  return badge;
 }
 //function that returns the license link
 function renderLicenseLink(data) {
