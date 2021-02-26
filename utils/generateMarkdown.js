@@ -1,5 +1,4 @@
 //function that returns a license badge based on which license is passed in
-
 function renderLicenseBadge(data) {
   let badge;
   switch (data.license) {
@@ -30,6 +29,7 @@ function renderLicenseBadge(data) {
   }
   return badge;
 }
+
 //function that returns the license link
 function renderLicenseLink(data) {
   let link;
@@ -67,17 +67,29 @@ function renderLicenseSection(data) {
   return {renderLicenseBadge}, {renderLicenseLink};
 
 }
-
+//function to render table of contents to README
 function renderTOC(data) {
+  return `
+  * [Description](#description)
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [Contributions](#contributions)
+  * [Testing](#testing)
+  * [License](#license)
+  * [Github](#github)
+  * [Email](#email)
+  * [Links](#links)
   
+  `;
 }
 
 //function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
+   ${renderLicenseBadge(data)}
 
   ##Table of Contents
-
+  ${renderTOC(data)}
 
   ## Description
   ${data.description}
@@ -95,10 +107,9 @@ function generateMarkdown(data) {
   ${data.test}
 
   ## License
-  ${renderLicenseBadge(data)}
   ${renderLicenseSection(data)}
 
-  ## Github Name
+  ## Github
   Look for me on Github: ${data.github}
 
   ## Email
