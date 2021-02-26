@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const generateMD = reguire('.utils/generateMarkdown');
 
 const userPrompts = () =>
     inquirer.prompt([
@@ -79,7 +80,13 @@ const userPrompts = () =>
             type: 'checkbox',
             name: 'license',
             message: 'Please choose a license for this application.',
-            choices: ['MIT', 'GPLv3', 'Apache', 'BSD 3-clause', 'Other'],
+            choices: ['MIT', 'Mozilla', 'IBM', 'Apache', 'BSD 3-Clause', 'Eclipse', 'Other', 'None'],
+            validate: function( response ) {
+              if (response.checked) {
+                return true;
+              } else {
+                return console.log('Please choose a license.');
+              }
           },
         {
             type: 'input',
@@ -98,7 +105,7 @@ const userPrompts = () =>
             name: 'email',
             message: 'What is your email address?',
             validate: function( response ) {
-                if (response.length < 1) {
+                if (response.includes("@")) {
                   return true;
                 } else {
                   return console.log('Please add your email.');
