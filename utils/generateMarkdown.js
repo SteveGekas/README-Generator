@@ -70,15 +70,15 @@ function renderLicenseSection(data) {
 //function to render table of contents to README
 function renderTOC(data) {
   return `
-  * [Description](#description)
-  * [Installation](#installation)
-  * [Usage](#usage)
-  * [Contributions](#contributions)
-  * [Testing](#testing)
-  * [License](#license)
-  * [Github](#github)
-  * [Email](#email)
-  * [Links](#links)
+   [Description](#description)<br>
+   [Installation](#installation)<br>
+   [Usage](#usage)<br>
+   [Contributions](#contributions)<br>
+   [Testing](#testing)<br>
+   [License](#license)<br>
+   [Github](#github)<br>
+   [Email](#email)<br>
+   [Links](#links)<br>
   
   `;
 }
