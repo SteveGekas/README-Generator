@@ -1,9 +1,10 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('./utils/generateMarkdown');
+const path = require('path');
 
 
-const userPrompts = 
+const questions = 
   [
     {
       type: 'input',
@@ -85,6 +86,7 @@ const userPrompts =
       validate: function (response) {
         if (response.checked = true) {
           return true;
+          console.log(response.value)
         } else {
           return console.log( 'Please choose a license.');
         }
@@ -128,18 +130,22 @@ const userPrompts =
     },
   ];
 
+function writeToFile(fileName, data) {
+  return fs.writeFileSync(path.join(process.cwd(), fileName), data);
+}
+
 // TODO: Create a function to write README file
 function init() {
-  inquirer.prompt([...userPrompts])
-    .then((response) => {
+  inquirer.prompt(questions)
+    .then((responses) => {
       try {
-        fs.writeFileSync('exampleREADME', generateMarkdown);
-        console.log('You have completed you README.MD!');
+        writeToFile('README.md', generateMarkdown({ ...responses }));
+        console.log('You have completed you README.md!');
 
-      }catch (err) {
-        console.log(err)
+      }catch (error) {
+        console.log(error)
       }
-    })
+    });
 }
 
 
