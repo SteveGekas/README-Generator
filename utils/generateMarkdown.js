@@ -63,8 +63,8 @@ function renderLicenseLink(data) {
 }
 
 //function that returns the license section of README
-function renderLicenseSection(data) { 
-  return {renderLicenseBadge}, {renderLicenseLink};
+function renderLicenseSection(data) {
+  return { renderLicenseBadge }, { renderLicenseLink };
 
 }
 //function to render table of contents to README
