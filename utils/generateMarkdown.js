@@ -1,84 +1,87 @@
 //function that returns a license badge based on which license is passed in
-function renderLicenseBadge(data) {
-  let badge;
-  switch (data.license) {
-    case 'MIT':
-      badge = '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]';
-      break;
-    case 'Mozilla':
-      badge = '[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)]';
-      break;
-    case 'IBM':
-      badge = '[![License: IPL 1.0](https://img.shields.io/badge/License-IPL%201.0-blue.svg)]';
-      break;
-    case 'Apache':
-      badge = '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)]';
-      break;
-    case 'BSD 3-Clause':
-      badge = '[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)]';
-      break;
-    case 'Eclipse':
-      badge = '[![License](https://img.shields.io/badge/License-EPL%201.0-red.svg)]';
-      break;
-    case 'Other':
-      badge = '[![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)]';
-      break;
-    case 'None':
-      badge = ' ';
-      break;
+function renderLicenseBadge(license) {
+  const badgeLicense = (badge) => {
+    switch (license) {
+      case 'MIT':
+        badge = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]`;
+        break;
+      case 'Mozilla':
+        badge = `[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)]`;
+        break;
+      case 'IBM':
+        badge = `[![License: IPL 1.0](https://img.shields.io/badge/License-IPL%201.0-blue.svg)]`;
+        break;
+      case 'Apache':
+        badge = `[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)]`;
+        break;
+      case 'BSD 3-Clause':
+        badge = `[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)]`;
+        break;
+      case 'Eclipse':
+        badge = `[![License](https://img.shields.io/badge/License-EPL%201.0-red.svg)]`;
+        break;
+      case 'Other':
+        badge = `[![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)]`;
+        break;
+      case 'None':
+        badge = ' ';
+        break;
+    }
+    return badge;
   }
-  return badge;
 }
 
 //function that returns the license link
-function renderLicenseLink(data) {
-  let link;
-  switch (data.link) {
+function renderLicenseLink(license) {
+  const linkLicense = (link) => {
+  switch (license) {
     case 'MIT':
-      link = '(https://opensource.org/licenses/MIT)';
+      link = `(https://opensource.org/licenses/MIT)`;
       break;
     case 'Mozilla':
-      link = '(https://opensource.org/licenses/MPL-2.0)';
+      link = `(https://opensource.org/licenses/MPL-2.0)`;
       break;
     case 'IBM':
-      link = '(https://opensource.org/licenses/IPL-1.0)';
+      link = `(https://opensource.org/licenses/IPL-1.0)`;
       break;
     case 'Apache':
-      link = '(https://opensource.org/licenses/Apache-2.0)';
+      link = `(https://opensource.org/licenses/Apache-2.0)`;
       break;
     case 'BSD 3-Clause':
-      link = '(https://opensource.org/licenses/BSD-3-Clause)';
+      link = `(https://opensource.org/licenses/BSD-3-Clause)`;
       break;
     case 'Eclipse':
-      link = '(https://opensource.org/licenses/EPL-1.0)';
+      link = `(https://opensource.org/licenses/EPL-1.0)`;
       break;
     case 'Other':
-      link = '(http://www.wtfpl.net/about/)';
+      link = `(http://www.wtfpl.net/about/)`;
       break;
-    case 'None':
-      link = '';
+    case `None`:
+      link = ``;
       break;
   }
   return link;
 }
+}
 
 //function that returns the license section of README
-function renderLicenseSection(data) {
-  return { renderLicenseBadge }, { renderLicenseLink };
+function renderLicenseSection(renderLicenseBadge, renderLicenseLink) {
+
+  return (({ badge, link }))
 
 }
 //function to render table of contents to README
 function renderTOC(data) {
   return `
-   [Description](#description)<br>
-   [Installation](#installation)<br>
-   [Usage](#usage)<br>
-   [Contributions](#contributions)<br>
-   [Testing](#testing)<br>
-   [License](#license)<br>
-   [Github](#github)<br>
-   [Email](#email)<br>
-   [Links](#links)<br>
+   [Description](#description)
+   [Installation](#installation)
+   [Usage](#usage)
+   [Contributions](#contributions)
+   [Testing](#testing)
+   [License](#license)
+   [Github](#github)
+   [Email](#email)
+   [Links](#links)
   
   `;
 }
@@ -86,7 +89,8 @@ function renderTOC(data) {
 //function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
-   ${renderLicenseBadge(data)}
+  
+   ${data.license}
 
   ##Table of Contents
   ${renderTOC(data)}
@@ -107,8 +111,8 @@ function generateMarkdown(data) {
   ${data.test}
 
   ## License
-  ${renderLicenseSection(data)}
-
+  ${data.license}
+    
   ## Github
   Look for me on Github: ${data.github}
 
